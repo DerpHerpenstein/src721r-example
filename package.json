@@ -1,0 +1,45 @@
+{
+  "name": "src721r-nft",
+  "version": "1.0.0",
+  "description": "NFT",
+  "main": "mint.html",
+  "scripts": {
+    "clean:dist": "rm -rf dist/* && mkdir dist/s && mkdir dist/min",
+
+    "minify:nft-js": "terser s/nft.js -o dist/nft.min.js -c passes=2 -m",
+    "minify:all": "npm run minify:nft-js",
+
+    "gzip:all": "gzip dist/*.min.* -9 -k",
+
+    "move:gzip": "mv dist/*.gz dist/s",
+    "move:minified": "mv dist/*.min.* dist/min",
+    "move:all": "npm run move:gzip && npm run move:minified",
+
+    "copy:lib": "cp s/mint.html dist/s && cp s/A10207619717431880000 dist/s && cp s/A6677669155563188000 dist/s && cp s/load.js dist/s",
+
+    "build:dist": "npm run clean:dist && npm run minify:all && npm run gzip:all && npm run move:all && npm run copy:lib",
+    "start": "npm run build:dist && concurrently 'cd dist && npx static-server -p 9080' 'sleep 1 && open http://localhost:9080/s/mint.html'"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "stamp",
+    "recursive",
+    "bitcoin"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "concurrently": "^8.2.2",
+    "html-minifier-terser": "^7.2.0",
+    "open": "^10.0.3",
+    "terser": "^5.27.1"
+  }
+}

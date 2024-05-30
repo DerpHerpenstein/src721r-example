@@ -1,0 +1,15 @@
+{
+    "p": "src-721",
+    "v": "r0",
+    "op": "deploy",
+    "name": "My NFT",
+    "symbol": "MYNFT",
+    "description": "My awesome nft collection",
+    "max": "10000",                                             // max supply
+    "price": "30000",                                           // fee price in sats
+    "recipient": "bc1q8sjt8wrju9gl329qn2uxyr7dnn9ufap7z6x9l2",  // recipient of the fee
+    "type": "data:text/html",                                   // type of nft (mint.html)
+    "t0": [
+        "A0000000000000000000"                                  // CPID of the load.js file used in the mint.html script tag
+    ]
+}
